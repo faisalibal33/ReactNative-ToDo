@@ -1,9 +1,24 @@
-import { Button, TextInput, View, StyleSheet, Modal } from "react-native";
+import {
+  Button,
+  TextInput,
+  View,
+  StyleSheet,
+  Modal,
+  Image,
+} from "react-native";
+import logo from "../assets/logo.png";
 
-const GoalInput = ({ goalInputHandler, addGoalHandler, text, modal }) => {
+const GoalInput = ({
+  goalInputHandler,
+  addGoalHandler,
+  text,
+  modal,
+  closeModal,
+}) => {
   return (
     <Modal visible={modal} animationType="slide">
       <View style={styles.inputContainer}>
+        <Image source={logo} style={styles.image} />
         <TextInput
           placeholder="Your course goal"
           style={styles.textInput}
@@ -12,10 +27,10 @@ const GoalInput = ({ goalInputHandler, addGoalHandler, text, modal }) => {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} />
+            <Button title="Cancel" onPress={closeModal} color="red" />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={addGoalHandler} />
+            <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
         </View>
       </View>
@@ -30,10 +45,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
     padding: 16,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   textInput: {
     borderWidth: 1,
